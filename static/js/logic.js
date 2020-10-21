@@ -1,7 +1,7 @@
 // Create the map object
 let myMap = L.map("map", {
     center: [14.23, -51.92],
-    zoom: 3
+    zoom: 2
   });
 
 // Make a title layer
@@ -15,11 +15,13 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
 
 // Make the Quake marker layer
+let quakeLocal = L.marker([45.52, -122.67], {
+  }).addTo(myMap);
 
 // Make the legend
 
-// Make the tool tip 
-
+// Make the tool tip/popup
+quakeLocal.bindPopup("Location: <br>Magnitude: <br>Depth:");
 
 
 // Load the json data for the last 7 days
