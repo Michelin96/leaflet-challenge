@@ -16,22 +16,22 @@ function createFeatures(quakeData) {
         onEachFeature: onEachFeature,
     });
 
-    // let mags = L.geoJSON(quakeData, {
-    //     onEachFeature: onEachFeature,
-    //     pointToLayer: (feature, latlng) => {
-    //       return new L.Circle(latlng, {
-    //         radius: feature.properties.mag*20000,
-    //         fillColor: "red",
-    //         stroke: false 
-    //       });
-    //     }
-    //   });
+    let mags = L.geoJSON(quakeData, {
+        onEachFeature: onEachFeature,
+        pointToLayer: (feature, latlng) => {
+          return new L.Circle(latlng, {
+            radius: feature.properties.mag*50000,
+            fillColor: "red",
+            stroke: false 
+          });
+        }
+      });
     
     // Sending our earthquakes layer to the createMap function
-    createMap(quakes);
+    createMap(quakes, mags);
 }
 
-function createMap(quakes) {
+function createMap(quakes, mags) {
 
     // Define streetmap and darkmap layers
     var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -51,7 +51,7 @@ function createMap(quakes) {
     });
   
     // Define a baseMaps object to hold our base layers
-    var baseMaps = {
+    let baseMaps = {
       "Street Map": streetmap,
       "Dark Map": darkmap
     };
@@ -59,19 +59,21 @@ function createMap(quakes) {
     // Create overlay object to hold our overlay layer
     var overlayMaps = {
       Earthquakes: quakes,
-    //   Magnitudes: mags
+      Magnitudes: mags
     };
   
     // Create the map object with the default layers
-    var myMap = L.map("map", {
+    let myMap = L.map("map", {
       center: [
         14.23, -51.92
       ],
       zoom: 2,
       layers: [streetmap, quakes]
     });
-  
-    //Add layer control to our baske and layer maps
+
+    // Create a layer control
+    // Pass in our baseMaps and overlayMaps
+    // Add the layer control to the map
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(myMap);
