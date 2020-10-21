@@ -14,6 +14,12 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
+// Define a markerSize function that will give each quake a different radius based on its magnitude
+function markerSize(population) {
+    return population / 40;
+  }
+  
+
 // Make an array of quake data objects
 
 // Loop through the quake data array and create one marker for each location, bind a popup containing its name, magnitude and depth add it to the map
