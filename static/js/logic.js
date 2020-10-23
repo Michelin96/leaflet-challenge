@@ -28,16 +28,17 @@ function createFeatures(earthquakeData) {
 
   // Give each feature a popup describing the location, magnitude, and depth of the earthquake
   function onEachFeature(feature, layer) {
+
     layer.bindPopup(`Location: ${feature.properties.place}<br>Magnitude: ${feature.properties.mag} <br>Depth: ${feature.geometry.coordinates[2]} km`)
     .addTo(myMap);
   }
-
+  
   let mags = L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature,
     pointToLayer: (feature, latlng) => {
       return new L.Circle(latlng, {
         radius: Math.sqrt(feature.properties.mag)*150000,
-        fillColor: "red",
+        fillColor: feature.geometry.coordinates[2] > 200 ? 'maroon': feature.geometry.coordinates[2] > 100 ? 'red': feature.geometry.coordinates[2] > 50 ? 'orange':'yellow',
         stroke: false 
       });
     }
