@@ -26,7 +26,6 @@ d3.json(quakeUrl).then(data => {
 
 function createFeatures(earthquakeData) {
 
-  // Define a function we want to run once for each feature in the features array
   // Give each feature a popup describing the location, magnitude, and depth of the earthquake
   function onEachFeature(feature, layer) {
     layer.bindPopup(`Location: ${feature.properties.place}<br>Magnitude: ${feature.properties.mag} <br>Depth: ${feature.geometry.coordinates[2]}`)
@@ -37,7 +36,7 @@ function createFeatures(earthquakeData) {
     onEachFeature: onEachFeature,
     pointToLayer: (feature, latlng) => {
       return new L.Circle(latlng, {
-        radius: feature.properties.mag*20000,
+        radius: feature.properties.mag*50000,
         fillColor: "red",
         stroke: false 
       });
