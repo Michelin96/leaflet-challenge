@@ -4,7 +4,7 @@
     zoom: 2
 });
 
-// Make a title layer
+// Make a tile layer
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
 attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
 tileSize: 512,
@@ -28,7 +28,7 @@ function createFeatures(earthquakeData) {
 
   // Give each feature a popup describing the location, magnitude, and depth of the earthquake
   function onEachFeature(feature, layer) {
-    layer.bindPopup(`Location: ${feature.properties.place}<br>Magnitude: ${feature.properties.mag} <br>Depth: ${feature.geometry.coordinates[2]}`)
+    layer.bindPopup(`Location: ${feature.properties.place}<br>Magnitude: ${feature.properties.mag} <br>Depth: ${feature.geometry.coordinates[2]} km`)
     .addTo(myMap);
   }
 
@@ -36,7 +36,7 @@ function createFeatures(earthquakeData) {
     onEachFeature: onEachFeature,
     pointToLayer: (feature, latlng) => {
       return new L.Circle(latlng, {
-        radius: feature.properties.mag*50000,
+        radius: Math.sqrt(feature.properties.mag)*150000,
         fillColor: "red",
         stroke: false 
       });
