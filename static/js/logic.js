@@ -33,7 +33,7 @@ function createFeatures(earthquakeData) {
     .addTo(myMap);
   }
   
-  let mags = L.geoJSON(earthquakeData, {
+  L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature,
     pointToLayer: (feature, latlng) => {
       return new L.Circle(latlng, {
