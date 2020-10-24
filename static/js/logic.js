@@ -20,40 +20,43 @@ let quakeUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_we
 // Perform a GET request to the query URL
 d3.json(quakeUrl).then(data => {
   console.log(data);
-  // Once we get a response, send the data.features object to the createFeatures function
-  createFeatures(data.features);
-});
+ // Create a new choropleth layer
+ let geojson = L.choropleth(data, {
 
-function createFeatures(earthquakeData) {
+  // Define what  property in the features to use
+  valueProperty: "MHI2016",
 
-  // Give each feature a popup describing the location, magnitude, and depth of the earthquake
-  function onEachFeature(feature, layer) {
+  // Set color scale
+  scale: ["#ffffb2", "#b10026"],
 
-    layer.bindPopup(`Location: ${feature.properties.place}<br>Magnitude: ${feature.properties.mag} <br>Depth: ${feature.geometry.coordinates[2]} km`)
-    .addTo(myMap);
+  // Number of breaks in step range
+  steps: 10,
+
+  // q for quartile, e for equidistant, k for k-means
+  mode: "q",
+  style: {
+    // Border color
+    color: "#fff",
+    weight: 1,
+    fillOpacity: 0.8
+  },
+
+  // Binding a pop-up to each layer
+  onEachFeature: function(feature, layer) {
+    layer.bindPopup(`Location: ${feature.properties.place}<br>Magnitude: ${feature.properties.mag} <br>Depth: ${feature.geometry.coordinates[2]} km`);
   }
-  
-  L.geoJSON(earthquakeData, {
-    onEachFeature: onEachFeature,
-    pointToLayer: (feature, latlng) => {
-      return new L.Circle(latlng, {
-        radius: Math.sqrt(feature.properties.mag)*150000,
-        fillColor: feature.geometry.coordinates[2] > 200 ? 'maroon': feature.geometry.coordinates[2] > 100 ? 'red': feature.geometry.coordinates[2] > 50 ? 'orange':'yellow',
-        stroke: false 
-      });
-    }
-  });
+}).addTo(myMap);
 
-   // Set up the legend
-   var legend = L.control({ position: "bottomleft" });
-   legend.onAdd = function() {
-     var div = L.DomUtil.create("div", "info legend");
-     var limits = geojson.options.limits;
-     var colors = geojson.options.colors;
-     var labels = [];
- 
+// Set up the legend
+var legend = L.control({ position: "bottomleft" });
+legend.onAdd = function() {
+  var div = L.DomUtil.create("div", "info legend");
+  var limits = geojson.options.limits;
+  var colors = geojson.options.colors;
+  var labels = [];
+
   // Add min & max
-  var legendInfo = `<h1>Median Income</h1>
+  var legendInfo = `<h1>Earthquake Depth (km)</h1>
     <div class="labels">
       <div class="min"> ${limits[0].toLocaleString(undefined,{style:'currency',currency:'USD',maximumSignificantDigits: 3})} </div>
       <div class="max"> ${limits[limits.length - 1].toLocaleString(undefined,{style:'currency',currency:'USD',maximumSignificantDigits: 4})} </div>
@@ -72,4 +75,4 @@ function createFeatures(earthquakeData) {
 // Adding legend to the map
 legend.addTo(myMap);
 
-}
+});
