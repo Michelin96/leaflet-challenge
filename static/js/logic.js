@@ -22,6 +22,29 @@ d3.json(quakeUrl).then(data => {
   console.log(data);
   // Once we get a response, send the data.features object to the createFeatures function
   createFeatures(data.features);
+
+  let legend = L.control({position: 'bottomright'});
+
+  legend.onAdd = function (map) {
+
+      let div = L.DomUtil.create('div', 'info legend'),
+          kmDepth = [0, 10, 50, 100, 200],
+          colors = ['maroon','red', 'orange', 'gold','yellow'],
+          labels = [];
+
+      // loop through depth intervals and generate a label with a colored square for each interval
+      for (let i = 0; i < kmDepth.length; i++) {
+        console.log(kmDepth);
+        console.log(colors);
+          div.innerHTML +=
+              '<i style="background:' + colors[i] + '"></i> ' +
+              kmDepth[i] + (kmDepth[i + 1] ? '&ndash;' + kmDepth[i + 1] + '<br>' : '+');
+      }
+
+      return div;
+  };
+
+  legend.addTo(myMap);
  
 });
 
@@ -44,27 +67,6 @@ function createFeatures(earthquakeData) {
       });
     }
   });
-
-  let legend = L.control({position: 'bottomright'});
-
-  legend.onAdd = function (map) {
-
-      let div = L.DomUtil.create('div', 'info legend'),
-          grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-          labels = [];
-
-      // loop through our density intervals and generate a label with a colored square for each interval
-      for (let i = 0; i < grades.length; i++) {
-          div.innerHTML +=
-              '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-              grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-      }
-
-      return div;
-  };
-
-  legend.addTo(map);
   
-
 }
 
