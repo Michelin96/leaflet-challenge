@@ -11,6 +11,6 @@ This interactive map requires an API key from <a href="https://www.mapbox.com/" 
 
 ## Interpreting the Visualization
 
-The size of the maker is based on the recored magnitude of the earthquake. However, due to the curvature of the eath the magnitudes are disproportionate as you get further from the equator in either hemishere. The color of each marker shows the depth of the earthquakes in kilometers as indicated in the legend in the bottom right. Clicking on any earthquake marker will give a popup with the location, magnitude and depth.
+The size of each marker is based on the recored magnitude of the earthquake. However, due to the curvature of the eath the magnitudes are disproportionate as you get further from the equator in either hemishere. The color of each marker shows the depth of the earthquakes in kilometers as indicated in the legend in the bottom right. Clicking on any earthquake marker will give a popup with the location, magnitude and depth.
 
 #
