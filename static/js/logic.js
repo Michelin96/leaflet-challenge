@@ -38,7 +38,7 @@ d3.json(quakeUrl).then(data => {
               '<i style=\"background:' + colors[i] + '"></i> ' +
               kmDepth[i] + (kmDepth[i + 1] ? '&ndash;' + kmDepth[i + 1] + '<br>' : '+');
       }
-
+      
       return div;
   };
 
