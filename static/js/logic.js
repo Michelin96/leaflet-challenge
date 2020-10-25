@@ -34,8 +34,6 @@ d3.json(quakeUrl).then(data => {
 
       // loop through depth intervals and generate a label with a colored square for each interval
       for (let i = 0; i < kmDepth.length; i++) {
-        console.log(kmDepth[i]);
-        console.log(colors[i]);
           div.innerHTML +=
               '<i style=\"background:' + colors[i] + '"></i> ' +
               kmDepth[i] + (kmDepth[i + 1] ? '&ndash;' + kmDepth[i + 1] + '<br>' : '+');
