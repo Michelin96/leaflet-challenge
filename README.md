@@ -3,7 +3,7 @@ Using leaflet maps to show locations of earthquakes
 
 # Synopsis
 
-Earthquake data was collected from the US Geological Society webite (<a href="https://earthquake.usgs.gov/earthquakes/" target="_blank">earthquake.usgs.gov</a>). The range of data on the interactive map is earthquakes in the last week with a magnitude greater that 2.5.
+Earthquake data was collected from the US Geological Society webite (<a href="https://earthquake.usgs.gov/earthquakes/" target="_blank">earthquake.usgs.gov</a>). The range of data on the interactive map is earthquakes in the last week with a magnitude greater than 2.5.
 
 ## Loading the Map
 
