@@ -36,7 +36,7 @@ d3.json(quakeUrl).then(data => {
       for (let i = 0; i < kmDepth.length; i++) {
           div.innerHTML +=
               '<i style=\"background:' + colors[i] + '"></i> ' +
-              kmDepth[i] + (kmDepth[i + 1] ? '&ndash;' + kmDepth[i + 1] + '<br>' : '+');
+              (kmDepth[i] +1) + (kmDepth[i + 1] ? '&ndash;' + kmDepth[i + 1] + '<br>' : '+');
       }
 
       return div;
