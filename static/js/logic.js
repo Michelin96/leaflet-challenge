@@ -29,7 +29,7 @@ d3.json(quakeUrl).then(data => {
 
       let div = L.DomUtil.create('div', 'info legend'),
           kmDepth = [0, 10, 50, 100, 200],
-          colors = ['yellow','gold', 'orange', 'red','maroon'],
+          colors = ['yellow','gold', 'orange', 'red', 'maroon'],
           labels = [];
 
       // loop through depth intervals and generate a label with a colored square for each interval
@@ -38,7 +38,7 @@ d3.json(quakeUrl).then(data => {
               '<i style=\"background:' + colors[i] + '"></i> ' +
               kmDepth[i] + (kmDepth[i + 1] ? '&ndash;' + kmDepth[i + 1] + '<br>' : '+');
       }
-      
+
       return div;
   };
 
