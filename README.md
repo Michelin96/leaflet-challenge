@@ -9,4 +9,4 @@ Earthquake data was collected from the US Geological Society webite (<a href="ht
 
 The size of the maker is based on the recored magnitude of the earthquake. However, due to the curvature of the eath the magnitudes are disproportionate as you get further from the equator in either hemishere. The color of each marker shows the depth of the earthquakes as indicated in the legend in the bottom right. Clicking on any earthquake marker wiill give a popup with the location, magnitude and depth.
 
-This map reqires an API key from 
+This interactive map requires an API key from <a href="https://www.mapbox.com/">Mapbox</a>.
