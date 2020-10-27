@@ -1,5 +1,5 @@
 # leaflet-challenge
-Using leaflet maps to show locations of earthquakes
+Using leaflet maps to show locations of earthquakes.
 
 # Synopsis
 
@@ -7,9 +7,9 @@ Earthquake data was collected from the US Geological Society webite (<a href="ht
 
 ## Loading the Map
 
-This interactive map requires an API key from <a href="https://www.mapbox.com/" target="_blank">Mapbox</a>. You can create a free account to have access to a general public key. The key will need to be copied in to static/js/configEDIT.js and the file renamed to config.js.
+This interactive map requires an API key from <a href="https://www.mapbox.com/" target="_blank">Mapbox</a>. You can create a free account to have access to a general public key. The key will need to be copied in to Leaflet-Step-1/static/js/configEDIT.js and the file renamed to config.js.
 
-Copy the Leaflet-Step-1 folder to your computer. Add your Mapbox API key as noted above. Open the index.html file.
+Clone the repository to your computer. Add your Mapbox API key as noted above. Open the Leaflet-Step-1/index.html file.
 
 ## Interpreting the Visualization
 
