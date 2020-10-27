@@ -62,7 +62,8 @@ function createFeatures(earthquakeData) {
         radius: feature.properties.mag*50000,
         fillColor: feature.geometry.coordinates[2] > 200 ? 'maroon': feature.geometry.coordinates[2] > 100 ? 'red': feature.geometry.coordinates[2] > 50 ? 'orange': feature.geometry.coordinates[2] > 10 ? 'gold':'yellow',
         fillOpacity: .75,
-        stroke: false
+        weight: 1,
+        color: "black"
       });
     }
   });
